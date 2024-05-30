@@ -1,7 +1,10 @@
 package com.clappartners.librairymanagementarchitecturehexagonale.domain.service;
 
 import com.clappartners.librairymanagementarchitecturehexagonale.domain.model.Author;
-import com.clappartners.librairymanagementarchitecturehexagonale.domain.repository.AuthorRepository;
+import com.clappartners.librairymanagementarchitecturehexagonale.infrastrecture.entity.AuthorEntity;
+import com.clappartners.librairymanagementarchitecturehexagonale.infrastrecture.mapper.AuthorMapper;
+import com.clappartners.librairymanagementarchitecturehexagonale.infrastrecture.repository.AuthorRepository;
+import com.clappartners.librairymanagementarchitecturehexagonale.usecase.AuthorServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,19 +24,19 @@ public class AuthorServiceImplTest {
     @Mock
     private AuthorRepository authorRepository;
     @InjectMocks
-    private AuthorService authorService;
+    private AuthorServiceImpl authorService;
 
     @Test
     public void testGetAllAuthors() {
         //given
-        Author author1Provided = new Author(1L, "Joe", "Bar");
-        Author author2Provided = new Author(2L, "Eric", "lam");
+        AuthorEntity author1Provided = new AuthorEntity(1L, "Joe", "Bar");
+        AuthorEntity author2Provided = new AuthorEntity(2L, "Eric", "lam");
 
         // when
         when(authorRepository.findAll()).thenReturn(Arrays.asList(author1Provided, author2Provided));
 
         // then
-        List<Author> authors = authorService.getAllAuthors();
+        List<AuthorEntity> authors = authorService.getAllAuthors();
         assertEquals(2, authors.size());
         assertEquals("Joe", authors.get(0).getFirstName());
         assertEquals("Eric", authors.get(1).getFirstName());
@@ -42,24 +45,24 @@ public class AuthorServiceImplTest {
     @Test
     public void testGetAuthorById() {
         //given
-        Author authorProvided = new Author(1L, "Joe", "Bar");
+        AuthorEntity authorProvided = new AuthorEntity(1L, "Joe", "Bar");
 
         // when
         when(authorRepository.findById(1L)).thenReturn(Optional.of(authorProvided));
 
         // then
-        Optional<Author> foundAuthor = authorService.getAuthorById(1L);
+        Optional<AuthorEntity> foundAuthor = authorService.getAuthorById(1L);
         assertTrue(foundAuthor.isPresent());
-        assertEquals("John", foundAuthor.get().getFirstName());
+        assertEquals("Joe", foundAuthor.get().getFirstName());
     }
 
     @Test
     public void testSaveAuthor() {
-        Author author = new Author(1L, "John", "Doe");
+        AuthorEntity author = new AuthorEntity(1L, "John", "Doe");
 
         when(authorRepository.save(author)).thenReturn(author);
 
-        Author savedAuthor = authorService.saveAuthor(author);
+        AuthorEntity savedAuthor = authorService.saveAuthor(author);
         assertEquals("John", savedAuthor.getFirstName());
     }
 

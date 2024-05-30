@@ -16,4 +16,5 @@ public class Book {
     private String title;
     private double price;
     private LocalDate dateOfPublication;
+    private Author author;
 }

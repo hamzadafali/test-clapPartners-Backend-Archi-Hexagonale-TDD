@@ -1,16 +1,16 @@
 package com.clappartners.librairymanagementarchitecturehexagonale.domain.service;
 
-import com.clappartners.librairymanagementarchitecturehexagonale.domain.model.Author;
+import com.clappartners.librairymanagementarchitecturehexagonale.infrastrecture.entity.AuthorEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface AuthorService {
-    List<Author> getAllAuthors();
+    List<AuthorEntity> getAllAuthors();
 
-    Optional<Author> getAuthorById(long l);
+    Optional<AuthorEntity> getAuthorById(long l);
 
-    Author saveAuthor(Author author);
+    AuthorEntity saveAuthor(AuthorEntity author);
 
     void deleteAuthor(long l);
 }
