@@ -5,19 +5,12 @@ import com.clappartners.librairymanagementarchitecturehexagonale.domain.model.Au
 import java.util.List;
 import java.util.Optional;
 
-public class AuthorService {
-    public List<Author> getAllAuthors() {
-        return null;
-    }
+public interface AuthorService {
+    List<Author> getAllAuthors();
 
-    public Optional<Author> getAuthorById(long l) {
-        return null;
-    }
+    Optional<Author> getAuthorById(long l);
 
-    public Author saveAuthor(Author author) {
-        return null;
-    }
+    Author saveAuthor(Author author);
 
-    public void deleteAuthor(long l) {
-    }
+    void deleteAuthor(long l);
 }
